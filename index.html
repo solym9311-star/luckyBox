@@ -309,48 +309,21 @@ var pm_pid = "26212-c8a83c6c";
         .comment-time { color: #aaa; font-size: 0.78em; margin-top: 4px; }
     
 .notification-gate{
-    position:fixed;
-    inset:0;
-    z-index:10000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.88);
-    padding:20px;
+    position:fixed;inset:0;z-index:10000;display:flex;align-items:center;
+    justify-content:center;background:rgba(0,0,0,.78);padding:16px;
 }
 .notification-card{
-    max-width:420px;
-    width:100%;
-    background:#fff;
-    color:#111;
-    border-radius:20px;
-    padding:28px;
-    text-align:center;
-    box-shadow:0 15px 50px rgba(0,0,0,.5);
+    max-width:380px;width:100%;background:#fff;color:#111;border-radius:20px;
+    padding:28px 22px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.45);
 }
-.notification-card h2{margin:0 0 10px;color:#111}
-.notification-card p{color:#444;line-height:1.5}
+.notification-icon{font-size:52px}
+.notification-card h2{margin:10px 0 8px;color:#111}
+.notification-card p{color:#444;line-height:1.45;margin:0 0 20px}
 .notification-btn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:15px;
-    background:#111;
-    color:#fff;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+    width:100%;border:0;border-radius:12px;padding:15px;background:#111;color:#fff;
+    font-size:17px;font-weight:700;cursor:pointer;
 }
-.notification-status{
-    margin-top:12px;
-    font-size:13px;
-    color:#777;
-}
-.game-locked{
-    pointer-events:none;
-    user-select:none;
-    opacity:.55;
-}
+.game-locked{pointer-events:none;user-select:none;opacity:.55}
 
 </style>
 </head>
@@ -358,16 +331,15 @@ var pm_pid = "26212-c8a83c6c";
 
 <div class="notification-gate" id="notificationGate">
     <div class="notification-card">
-        <div style="font-size:48px">🔔</div>
+        <div class="notification-icon">🔔</div>
         <h2>Enable Notifications</h2>
-        <p>Enable browser notifications to continue and open the Lucky Boxes.</p>
+        <p>Please enable notifications to continue and open your Lucky Box.</p>
         <button class="notification-btn" id="enableNotificationsBtn" type="button">
             🔔 Enable Notifications
         </button>
-        <div class="notification-status" id="notificationStatus">
-            Notifications are required to continue.
-        </div>
     </div>
+</div>
+</div>
 </div>
 
 <div class="box-container">
@@ -417,66 +389,23 @@ var pm_pid = "26212-c8a83c6c";
 (function(){
     const gate = document.getElementById('notificationGate');
     const btn = document.getElementById('enableNotificationsBtn');
-    const status = document.getElementById('notificationStatus');
     const grid = document.getElementById('boxesGrid');
 
-    function isGranted(){
-        return ('Notification' in window) &&
-               Notification.permission === 'granted';
-    }
-
-    function unlock(){
+    // This notice does not try to control Chrome's permission UI.
+    // The existing Push script handles the notification subscription.
+    btn.addEventListener('click', function(){
         gate.style.display = 'none';
         grid.classList.remove('game-locked');
-    }
 
-    function lock(message){
-        gate.style.display = 'flex';
-        status.textContent = message;
-        grid.classList.add('game-locked');
-    }
-
-    function checkPermission(){
-        if (!('Notification' in window)) {
-            lock('This browser does not support notifications.');
-            btn.disabled = true;
-            btn.style.opacity = '.5';
-            return;
-        }
-
-        if (isGranted()) {
-            unlock();
-            return;
-        }
-
-        if (Notification.permission === 'denied') {
-            lock('Notifications are blocked. Allow notifications for this site in your browser settings, then reload the page.');
-            return;
-        }
-
-        lock('Notifications are required to continue.');
-    }
-
-    btn.addEventListener('click', async function(){
-        if (!('Notification' in window)) return;
-
+        // Give the Push provider a user interaction to work with.
         try {
-            const permission = await Notification.requestPermission();
-
-            if (permission === 'granted') {
-                status.textContent = 'Notifications enabled.';
-                unlock();
-            } else if (permission === 'denied') {
-                lock('Notifications were blocked. Allow them in your browser settings to continue.');
-            } else {
-                lock('Please allow notifications to continue.');
+            if (typeof window.OneSignal !== 'undefined' &&
+                window.OneSignal.Notifications &&
+                typeof window.OneSignal.Notifications.requestPermission === 'function') {
+                window.OneSignal.Notifications.requestPermission();
             }
-        } catch(e) {
-            lock('Could not request notification permission. Please try again.');
-        }
+        } catch(e) {}
     });
-
-    checkPermission();
 })();
 </script>
 
