@@ -308,38 +308,13 @@ var pm_pid = "26212-c8a83c6c";
         .comment-text { color: #555; font-size: 0.9em; line-height: 1.5; }
         .comment-time { color: #aaa; font-size: 0.78em; margin-top: 4px; }
     
-.notification-gate{
-    position:fixed;inset:0;z-index:10000;display:flex;align-items:center;
-    justify-content:center;background:rgba(0,0,0,.78);padding:16px;
-}
-.notification-card{
-    max-width:380px;width:100%;background:#fff;color:#111;border-radius:20px;
-    padding:28px 22px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.45);
-}
-.notification-icon{font-size:52px}
-.notification-card h2{margin:10px 0 8px;color:#111}
-.notification-card p{color:#444;line-height:1.45;margin:0 0 20px}
-.notification-btn{
-    width:100%;border:0;border-radius:12px;padding:15px;background:#111;color:#fff;
-    font-size:17px;font-weight:700;cursor:pointer;
-}
 .game-locked{pointer-events:none;user-select:none;opacity:.55}
 
 </style>
 </head>
 <body>
 
-<div class="notification-gate" id="notificationGate">
-    <div class="notification-card">
-        <div class="notification-icon">🔔</div>
-        <h2>Enable Notifications</h2>
-        <p>Please enable notifications to continue and open your Lucky Box.</p>
-        <button class="notification-btn" id="enableNotificationsBtn" type="button">
-            🔔 Enable Notifications
-        </button>
-    </div>
-</div>
-</div>
+
 </div>
 
 <div class="box-container">
@@ -347,7 +322,7 @@ var pm_pid = "26212-c8a83c6c";
     <div class="box-subtitle">Choose a box and discover your prize!</div>
     <div class="south-africa-flag" role="img" aria-label="Flag of South Africa"></div>
     <div class="attempts" id="attemptsInfo">Attempts remaining: <strong>3</strong></div>
-    <div class="boxes-grid game-locked" id="boxesGrid"></div>
+    <div class="boxes-grid" id="boxesGrid"></div>
     <div class="comments-section">
         <div class="comments-title">💬 Recent Winners</div>
         <div class="comment"><img class="comment-avatar" src="https://i.pravatar.cc/100?img=1" alt="avatar"><div class="comment-body"><div class="comment-header"><span class="comment-name">María González</span></div><div class="comment-text">I can't believe it! I won free data 😍</div><div class="comment-time">2 hours ago</div></div></div>
@@ -385,29 +360,7 @@ var pm_pid = "26212-c8a83c6c";
 </div>
 
 
-<script>
-(function(){
-    const gate = document.getElementById('notificationGate');
-    const btn = document.getElementById('enableNotificationsBtn');
-    const grid = document.getElementById('boxesGrid');
 
-    // This notice does not try to control Chrome's permission UI.
-    // The existing Push script handles the notification subscription.
-    btn.addEventListener('click', function(){
-        gate.style.display = 'none';
-        grid.classList.remove('game-locked');
-
-        // Give the Push provider a user interaction to work with.
-        try {
-            if (typeof window.OneSignal !== 'undefined' &&
-                window.OneSignal.Notifications &&
-                typeof window.OneSignal.Notifications.requestPermission === 'function') {
-                window.OneSignal.Notifications.requestPermission();
-            }
-        } catch(e) {}
-    });
-})();
-</script>
 
 <script>
 const bigPrizes = [
@@ -585,18 +538,7 @@ const bigPrizes = [
     }
 </script>
 
-<script>
-document.addEventListener('visibilitychange', function(){
-    if (document.visibilityState === 'visible' &&
-        'Notification' in window &&
-        Notification.permission === 'granted') {
-        const gate=document.getElementById('notificationGate');
-        const grid=document.getElementById('boxesGrid');
-        gate.style.display='none';
-        grid.classList.remove('game-locked');
-    }
-});
-</script>
+
 
 </body>
 </html>
